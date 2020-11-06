@@ -47,7 +47,7 @@ namespace OpsDeskProAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPerson(Guid id, Person person)
         {
-            if (id != person.ID)
+            if (id != person.Id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace OpsDeskProAPI.Controllers
             _context.Person.Add(person);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPerson", new { id = person.ID }, person);
+            return CreatedAtAction("GetPerson", new { id = person.Id }, person);
         }
 
         // DELETE: api/Person/5
@@ -103,7 +103,7 @@ namespace OpsDeskProAPI.Controllers
 
         private bool PersonExists(Guid id)
         {
-            return _context.Person.Any(e => e.ID == id);
+            return _context.Person.Any(e => e.Id == id);
         }
     }
 }

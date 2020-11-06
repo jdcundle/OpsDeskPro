@@ -47,7 +47,7 @@ namespace OpsDeskProAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMember(Guid id, Member member)
         {
-            if (id != member.ID)
+            if (id != member.Id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace OpsDeskProAPI.Controllers
             _context.Member.Add(member);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMember", new { id = member.ID }, member);
+            return CreatedAtAction("GetMember", new { id = member.Id }, member);
         }
 
         // DELETE: api/Member/5
@@ -103,7 +103,7 @@ namespace OpsDeskProAPI.Controllers
 
         private bool MemberExists(Guid id)
         {
-            return _context.Member.Any(e => e.ID == id);
+            return _context.Member.Any(e => e.Id == id);
         }
     }
 }

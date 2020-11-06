@@ -14,11 +14,20 @@ namespace OpsDeskProAPI.Models
         {
         }
 
+        public DbSet<Person> Person { get; set; }
         public DbSet<Member> Member { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Instructor> Instructor { get; set; }
-        public DbSet<Person> Person { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Aircraft> Aircraft { get; set; }
+        public DbSet<PersonType> PersonType { get; set; }
+        public DbSet<PersonTypePerson> PersonTypePerson { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PersonTypePerson>()
+                .HasKey(ptp => new { ptp.PersonTypeId, ptp.PersonId });
+        }
 
     }
 }

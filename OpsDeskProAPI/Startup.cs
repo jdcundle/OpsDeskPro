@@ -23,10 +23,13 @@ namespace OpsDeskProAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // added
-            services.AddDbContext<OpsDeskProContext>(opt =>
-               opt.UseInMemoryDatabase("OpsDeskProList"));
+            //// added
+            //services.AddDbContext<OpsDeskProContext>(opt =>
+            //   opt.UseInMemoryDatabase("OpsDeskProList"));
             services.AddControllers();
+
+            services.AddDbContext<OpsDeskProContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("OpsDeskProContext")));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
